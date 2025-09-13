@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify, request, send_from_directory, render_template
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from models import db, Category, Product
@@ -126,16 +126,18 @@ def debug_invalid_category():
 def serve_static(filename):
     return send_from_directory(os.path.join(BASE_DIR, 'static'), filename)
 
-# Catch-all route to serve React's index.html (for React Router support)
+# Catch-all route to serve React's index.html for React Router support
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_react_app(path):
-    # If the requested path is a static file, serve it
-    if path != "" and os.path.exists(os.path.join(BASE_DIR, 'static', path)):
-        return send_from_directory(os.path.join(BASE_DIR, 'static'), path)
+    static_folder = os.path.join(BASE_DIR, 'static')
+
+    requested_path = os.path.join(static_folder, path)
+    if path != "" and os.path.exists(requested_path):
+        return send_from_directory(static_folder, path)
     else:
-        # Otherwise serve React's index.html
-        return render_template('index.html')
+        # Serve React build's index.html as static file
+        return send_from_directory(static_folder, 'index.html')
 
 # --- Setup & Run ---
 if __name__ == '__main__':
