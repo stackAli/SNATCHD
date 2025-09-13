@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory, render_template
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from models import db, Category, Product
@@ -22,7 +22,7 @@ db.init_app(app)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# --- Routes ---
+# --- API Routes ---
 
 @app.route('/api/')
 def home_data():
@@ -119,6 +119,24 @@ def debug_invalid_category():
     products = Product.query.filter(~Product.category.has()).all()
     return jsonify([p.to_dict() for p in products])
 
+# --- Serve React build frontend ---
+
+# Serve static files (React build static assets)
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    return send_from_directory(os.path.join(BASE_DIR, 'static'), filename)
+
+# Catch-all route to serve React's index.html (for React Router support)
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve_react_app(path):
+    # If the requested path is a static file, serve it
+    if path != "" and os.path.exists(os.path.join(BASE_DIR, 'static', path)):
+        return send_from_directory(os.path.join(BASE_DIR, 'static'), path)
+    else:
+        # Otherwise serve React's index.html
+        return render_template('index.html')
+
 # --- Setup & Run ---
 if __name__ == '__main__':
     with app.app_context():
@@ -127,7 +145,7 @@ if __name__ == '__main__':
         # Create upload folder if not exists
         os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
-        # Ensure categories exist (only seed if empty)
+        # Seed categories if none exist
         if not Category.query.first():
             categories = ["Ring", "Earring", "Bracelet"]
             for name in categories:
