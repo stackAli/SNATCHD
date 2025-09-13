@@ -5,11 +5,16 @@ from werkzeug.utils import secure_filename
 from models import db, Category, Product
 from sqlalchemy import func
 
-app = Flask(__name__)
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+
+app = Flask(
+    __name__,
+    static_folder=os.path.join(BASE_DIR, 'static'),
+    static_url_path='/static'
+)
 CORS(app)
 
 # --- Config ---
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))  # project root dir
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(BASE_DIR, 'db.sqlite3')}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = os.path.join(BASE_DIR, 'static', 'uploads')
@@ -34,7 +39,6 @@ def shop_data():
     query = Product.query
 
     if category_name and category_name.lower() != "all":
-        # Join Category and filter by name case-insensitive
         query = query.join(Category).filter(func.lower(Category.name) == category_name.lower())
 
     products = query.all()
@@ -44,7 +48,6 @@ def shop_data():
 def contact_data():
     return jsonify({"email": "contact@yourshop.com", "phone": "123-456-7890"})
 
-# --- Add Product (with Image Upload) ---
 @app.route('/api/admin/products', methods=['POST'])
 def add_product():
     name = request.form['name']
@@ -57,7 +60,7 @@ def add_product():
     if image and allowed_file(image.filename):
         filename = secure_filename(image.filename)
         upload_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        os.makedirs(os.path.dirname(upload_path), exist_ok=True)  # ensure upload folder exists
+        os.makedirs(os.path.dirname(upload_path), exist_ok=True)
         image.save(upload_path)
         image_url = f"/static/uploads/{filename}"
 
@@ -100,7 +103,6 @@ def get_product(id):
     product = Product.query.get_or_404(id)
     return jsonify(product.to_dict())
 
-# --- Delete Product ---
 @app.route('/api/admin/products/<int:product_id>', methods=['DELETE'])
 def delete_product(product_id):
     product = Product.query.get_or_404(product_id)
@@ -108,7 +110,6 @@ def delete_product(product_id):
     db.session.commit()
     return jsonify({"message": "Product deleted"})
 
-# --- Debugging routes ---
 @app.route('/api/debug/categories')
 def debug_categories():
     categories = Category.query.all()
@@ -119,35 +120,25 @@ def debug_invalid_category():
     products = Product.query.filter(~Product.category.has()).all()
     return jsonify([p.to_dict() for p in products])
 
-# --- Serve React build frontend ---
+# --- React frontend serving ---
 
-# Serve static files (React build static assets)
-@app.route('/static/<path:filename>')
-def serve_static(filename):
-    return send_from_directory(os.path.join(BASE_DIR, 'static'), filename)
-
-# Catch-all route to serve React's index.html for React Router support
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_react_app(path):
-    static_folder = os.path.join(BASE_DIR, 'static')
-
-    requested_path = os.path.join(static_folder, path)
-    if path != "" and os.path.exists(requested_path):
-        return send_from_directory(static_folder, path)
+    # If the requested file exists in static folder, serve it directly
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
     else:
-        # Serve React build's index.html as static file
-        return send_from_directory(static_folder, 'index.html')
+        # For all other routes, serve React's index.html (supports React Router)
+        return send_from_directory(app.static_folder, 'index.html')
 
 # --- Setup & Run ---
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
 
-        # Create upload folder if not exists
         os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
-        # Seed categories if none exist
         if not Category.query.first():
             categories = ["Ring", "Earring", "Bracelet"]
             for name in categories:
