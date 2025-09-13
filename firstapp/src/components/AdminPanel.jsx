@@ -1,14 +1,28 @@
 import React, { useState, useEffect } from 'react';
 
+const API_BASE = 'https://whimsyjewels.pythonanywhere.com/api';
+
 function AdminPanel() {
   const [products, setProducts] = useState([]);
-  const [form, setForm] = useState({ name: '', description: '', price: '', category_id: 1 });
+  const [categories, setCategories] = useState([]);
+  const [form, setForm] = useState({ name: '', description: '', price: '', category_id: '' });
   const [imageFile, setImageFile] = useState(null);
 
+  // Fetch products and categories on mount
   useEffect(() => {
-    fetch('http://localhost:5000/api/shop')
+    fetch(`${API_BASE}/shop`)
       .then(res => res.json())
-      .then(data => setProducts(data))
+      .then(setProducts)
+      .catch(console.error);
+
+    fetch(`${API_BASE}/admin/categories`)
+      .then(res => res.json())
+      .then(data => {
+        setCategories(data);
+        if (data.length > 0) {
+          setForm(f => ({ ...f, category_id: data[0].id }));
+        }
+      })
       .catch(console.error);
   }, []);
 
@@ -27,17 +41,17 @@ function AdminPanel() {
     formData.append('category_id', form.category_id);
     formData.append('image', imageFile);
 
-    fetch('http://localhost:5000/api/admin/products', {
+    fetch(`${API_BASE}/admin/products`, {
       method: 'POST',
       body: formData,
     })
       .then(res => {
-        if (!res.ok) throw new Error('Failed to add product');
+        if (!res.ok) return res.json().then(err => { throw new Error(err.error || 'Failed to add product'); });
         return res.json();
       })
       .then(data => {
         setProducts(prev => [...prev, data.product]);
-        setForm({ name: '', description: '', price: '', category_id: 1 });
+        setForm({ name: '', description: '', price: '', category_id: categories[0]?.id || '' });
         setImageFile(null);
         e.target.reset();  // reset file input
       })
@@ -45,7 +59,7 @@ function AdminPanel() {
   };
 
   const deleteProduct = id => {
-    fetch(`http://localhost:5000/api/admin/products/${id}`, {
+    fetch(`${API_BASE}/admin/products/${id}`, {
       method: 'DELETE',
     })
       .then(res => {
@@ -91,9 +105,9 @@ function AdminPanel() {
           value={form.category_id}
           onChange={e => setForm({ ...form, category_id: parseInt(e.target.value, 10) })}
         >
-          <option value={1}>Ring</option>
-          <option value={6}>Earring</option>
-          <option value={3}>Bracelet</option>
+          {categories.map(c => (
+            <option key={c.id} value={c.id}>{c.name}</option>
+          ))}
         </select>
 
         <button type="submit">Add Product</button>

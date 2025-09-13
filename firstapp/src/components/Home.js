@@ -5,12 +5,11 @@ import Hero from './hero';
 import Hero2 from './hero2';
 import Footer from './footer';
 
-
 function Home() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/home')
+    fetch('https://whimsyjewels.pythonanywhere.com/api/home')
       .then(res => res.json())
       .then(data => setMessage(data.message))
       .catch(console.error);
@@ -22,6 +21,8 @@ function Home() {
       <Hero />
       <Hero2 />
       <Footer />
+      {/* Optionally display message somewhere */}
+      {message && <p>{message}</p>}
     </div>
   );
 }

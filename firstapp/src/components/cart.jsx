@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './cart.css'; // ← Import CSS here
 
+const API_BASE = 'https://whimsyjewels.pythonanywhere.com';
+
 function Cart() {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
@@ -59,7 +61,7 @@ function Cart() {
       <h2>Your Cart</h2>
       {cartItems.map(item => (
         <div className="cart-item" key={item.id}>
-          <img src={`http://localhost:5000${item.image}`} alt={item.name} />
+          <img src={`${API_BASE}${item.image}`} alt={item.name} />
           <div>
             <h3>{item.name}</h3>
             <p>Price per item: Rs {item.price.toFixed(2)}</p>

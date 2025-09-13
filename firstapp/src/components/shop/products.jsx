@@ -9,12 +9,15 @@ function ProductGrid() {
   const [page, setPage] = useState(1);
   const productsPerPage = 12;
 
+  // Hardcoded backend URL:
+  const API_URL = 'https://whimsyjewels.pythonanywhere.com';
+
   useEffect(() => {
     setPage(1); // Reset to first page when category changes
 
     const url = category && category.toLowerCase() !== 'all'
-      ? `http://localhost:5000/api/shop?category=${category}`
-      : `http://localhost:5000/api/shop`;
+      ? `${API_URL}/api/shop?category=${category}`
+      : `${API_URL}/api/shop`;
 
     fetch(url)
       .then(res => res.json())
@@ -56,7 +59,7 @@ function ProductGrid() {
                 style={{ cursor: 'pointer' }}
               >
                 <img
-                  src={`http://localhost:5000${product.image}`}
+                  src={`${API_URL}${product.image}`}
                   alt={product.name}
                 />
                 <h4>{product.name}</h4>

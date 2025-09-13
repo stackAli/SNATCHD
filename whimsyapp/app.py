@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from models import db, Category, Product
@@ -118,21 +118,6 @@ def debug_categories():
 def debug_invalid_category():
     products = Product.query.filter(~Product.category.has()).all()
     return jsonify([p.to_dict() for p in products])
-
-
-# --- Serve React Frontend ---
-
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def serve_react_app(path):
-    # React build folder path relative to this file
-    react_build_dir = os.path.abspath(os.path.join(BASE_DIR, '..', 'firstapp', 'build'))
-
-    if path != "" and os.path.exists(os.path.join(react_build_dir, path)):
-        return send_from_directory(react_build_dir, path)
-    else:
-        return send_from_directory(react_build_dir, 'index.html')
-
 
 # --- Setup & Run ---
 if __name__ == '__main__':
