@@ -1,0 +1,101 @@
+.contact-container {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 40px 20px; /* Increased vertical padding */
+  background-color: #f6ebf0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Increased gap between inputs */
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 16px 10px; /* More vertical padding */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #888;
+}
+
+.submit-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 16px 15px; /* More vertical padding */
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #218838;
+}
+
+.success-msg {
+  text-align: center;
+  color: green;
+  margin-bottom: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Responsive Styles */
+
+/* Tablets and smaller (<=768px) */
+@media (max-width: 768px) {
+  .contact-container {
+    max-width: 90%;
+    margin: 40px auto;
+    padding: 30px 15px; /* Adjust vertical padding */
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 0.9rem;
+    padding: 14px 8px; /* More vertical padding */
+  }
+
+  .submit-btn {
+    font-size: 0.9rem;
+    padding: 14px 12px;
+  }
+}
+
+/* Small phones (<=480px) */
+@media (max-width: 480px) {
+  .contact-container {
+    max-width: 100%;
+    margin: 20px 10px;
+    padding: 20px 10px; /* Adjust vertical padding */
+    border-radius: 6px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 0.85rem;
+    padding: 12px 6px; /* More vertical padding */
+  }
+
+  .submit-btn {
+    font-size: 0.85rem;
+    padding: 12px 10px;
+  }
+}

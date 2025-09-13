@@ -1,0 +1,87 @@
+.start {
+  padding: 30px 20px;
+  margin-left: 20px;
+}
+
+.start h1 {
+  color: #b46c93;
+  font-weight: 600;
+  font-family: serif;
+  margin-bottom: 40px;
+  font-size: 2rem;
+}
+
+/* Navigation container */
+nav {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+  scrollbar-width: none; /* Firefox: hide scrollbar */
+}
+
+/* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* Default nav link */
+.nav-link2 {
+  padding: 10px 25px;
+  border: 2px solid #b46c93;
+  border-radius: 5px;
+  color: #b46c93;
+  background-color: transparent;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 1.2rem;
+  font-weight: 400;
+  white-space: nowrap; /* Prevent link text from breaking */
+}
+
+/* Hover state */
+.nav-link2:hover {
+  background-color: #b46c93;
+  color: white;
+}
+
+/* Active link */
+.nav-link2.active {
+  background-color: #b46c93;
+  border-color: #b46c93;
+  font-weight: bold;
+  color: white;
+}
+
+/* --- Media Queries --- */
+
+/* Small devices (phones) */
+@media (max-width: 600px) {
+  .start {
+    padding: 20px 10px;
+    margin-left: 10px;
+  }
+
+  .start h1 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
+
+  .nav-link2 {
+    padding: 8px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 601px) and (max-width: 992px) {
+  .start h1 {
+    font-size: 1.8rem;
+  }
+
+  .nav-link2 {
+    padding: 10px 30px;
+    font-size: 1.1rem;
+  }
+}

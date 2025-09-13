@@ -1,0 +1,124 @@
+.grid-container {
+  margin-top: 50px; 
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 25px;
+  background-color: #f6ebf0;
+  width: 90%;       
+  margin: 50px auto;
+  align-items: center;
+}
+
+/* Left column styles */
+.grid-column-1 {
+  margin-right: 50px;
+}
+
+.grid-column-1 > h1 {
+  font-family: serif;
+  width: 100%;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.4;
+  margin-left: 50px;
+  color: #b46c93;
+}
+
+.grid-column-1 > p {
+  margin-top: 30px;
+  font-size: 1.3rem;
+  margin-left: 50px;
+  color: #b46c93;
+}
+
+.grid-column-1 button {
+  margin-top: 30px;
+  margin-left: 50px;
+  padding: 15px 50px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: #b46c93;
+  font-family: serif;
+  font-weight: bold;
+  border: none;
+  font-size: 1.3rem;
+}
+
+.grid-column-1 button:hover {
+  transform: translate(-10px, -10px) translateZ(0);
+  box-shadow: 10px 10px 15px #b46c93;
+}
+
+/* Right column (image) */
+.grid-column-2 {
+  overflow: hidden;
+}
+
+.grid-column-2 img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.5s ease;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+}
+
+.grid-column-2 img:hover {
+  transform: scale(1.1);
+}
+
+/* --- Responsive --- */
+
+/* Medium devices (tablets) */
+@media (max-width: 992px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* stack columns vertically */
+    gap: 20px;
+  }
+
+  .grid-column-1 {
+    margin-right: 0;
+    margin-left: 20px;
+    text-align: center;
+  }
+
+  .grid-column-1 > h1 {
+    font-size: 2.5rem;
+    margin-left: 0;
+  }
+
+  .grid-column-1 > p {
+    font-size: 1.2rem;
+    margin-left: 0;
+  }
+
+  .grid-column-1 button {
+    margin-left: 0;
+    padding: 12px 40px;
+    font-size: 1.2rem;
+  }
+}
+
+/* Small devices (phones) */
+@media (max-width: 600px) {
+  .grid-column-1 > h1 {
+    font-size: 2rem;
+  }
+
+  .grid-column-1 > p {
+    font-size: 1rem;
+  }
+
+  .grid-column-1 button {
+    padding: 10px 30px;
+    font-size: 1rem;
+  }
+
+  .grid-container {
+    margin: 30px 10px;
+    gap: 15px;
+  }
+}

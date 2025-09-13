@@ -1,0 +1,141 @@
+.grid-container {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns: text + image */
+  gap: 25px;
+  background-color: #f6ebf0;
+  width: 90%;
+  margin: 50px auto;
+  align-items: center;
+}
+
+/* Left column */
+.grid-column-1 {
+  margin-right: 50px;
+}
+
+.grid-column-1 > h1 {
+  font-family: serif;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.4;
+  margin-left: 50px;
+  color: #b46c93;
+}
+
+.grid-column-1 > p {
+  margin-top: 30px;
+  font-size: 1.3rem;
+  margin-left: 50px;
+  color: #b46c93;
+}
+
+.grid-column-1 button {
+  margin-top: 30px;
+  margin-left: 50px;
+  padding: 15px 50px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  transform: translateZ(10px);
+  cursor: pointer;
+  color: #b46c93;
+  font-family: serif;
+  font-weight: bold;
+  border: none;
+  font-size: 1.3rem;
+}
+
+.grid-column-1 button:hover {
+  transform: translate(-10px, -10px) translateZ(0);
+  box-shadow: 10px 10px 15px #b46c93;
+}
+
+/* Right column */
+.grid-column-2 {
+  overflow: hidden;
+}
+
+.grid-column-2 img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.5s ease;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+}
+
+.grid-column-2 img:hover {
+  transform: scale(1.1);
+}
+
+/* ================= Responsive ================= */
+
+/* Tablets (<=1024px) */
+@media (max-width: 1024px) {
+  .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-content: center; /* center grid container contents horizontally */
+      align-items: center;
+      text-align: center;
+      padding-left: 15px !important; /* shifts grid container right */
+}
+
+
+  .grid-column-1 {
+    padding-left: 15px !important;
+    margin: 0;
+  }
+
+  .grid-column-1 > h1,
+  .grid-column-1 > p,
+  .grid-column-1 button {
+    margin-left: 0;
+    padding-left: 15px !important;
+  }
+
+  .grid-column-1 > h1 {
+    font-size: 2.5rem;
+  }
+
+  .grid-column-1 > p {
+    font-size: 1.1rem;
+  }
+}
+
+
+/* Mobile (<=480px) */
+@media (max-width: 480px) {
+  /* Container full width, remove margins/padding */
+  .grid-container {
+    width: 100%;
+    margin-left: 10px;
+    padding: 0;
+    grid-template-columns: 1fr; /* Only one column */
+    text-align: center;
+    background: none !important;
+    
+  }
+
+  /* Hide column 1 completely */
+  .grid-column-1 {
+    display: none;
+  }
+
+  /* Column 2 takes full width, remove any padding/margin from container and column */
+  .grid-column-2 {
+    width: 90vw; /* Full viewport width */
+    margin: 0;
+    padding: 0;
+  }
+
+  .grid-column-2 img {
+    width: 100vw; /* Full viewport width */
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+}
+

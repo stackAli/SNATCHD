@@ -1,0 +1,233 @@
+/* src/components/hero2.css */
+
+body {
+  font-family: serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+.hero2 {
+  border-radius: 10px;
+  margin: 30px;
+  background-color: #f6ebf0;
+  display: flex;
+  flex-direction: row;
+  margin-top: 80px;
+  gap: 70px;
+  padding: 0 40px;
+  overflow: hidden;
+}
+
+.hero2 img {
+  width: 450px;
+  height: auto;
+  border-radius: 10px;
+  margin: 40px 0px;
+  margin-bottom: 40px;
+  object-fit: cover;
+}
+
+.hero2-content {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin-right: 20px;
+}
+
+.hero2-content h4 {
+  font-size: 1.3rem;
+  color: #b46c93;
+  margin: 0 0 10px 0;
+}
+
+.hero2-content h1 {
+  margin: 20px 0 15px 0;
+  font-size: 2.5rem;
+  font-family: serif;
+  color: #b46c93;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.hero2-content p {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: black;
+  line-height: 1.6;
+  max-width: 100%;
+}
+
+.hero2-features {
+  margin-top: 20px;
+}
+
+.hero2-feature {
+  margin-bottom: 15px;
+}
+
+.feature-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feature-header h3 {
+  font-size: 1.3rem;
+  color: #b46c93;
+  margin: 0;
+  font-weight: 20;
+}
+
+.feature-header > button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #b46c93;
+  font-weight: bold;
+  transition: transform 0.7s ease;
+  box-shadow: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-header > button:hover {
+  transform: rotate(180deg);
+}
+
+.feature-description {
+  font-size: 0.95rem;
+  color: #444;
+  margin-top: 8px;
+}
+.hero-grid-item-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+
+/* ========== Responsive Styles ========== */
+
+/* Tablets (<=1024px) */
+@media (max-width: 1024px) {
+  .hero2 {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 20px;
+    gap: 70px;
+  }
+
+  .hero2 img {
+    width: 80%;
+    max-width: 400px;
+    margin: 20px 0;
+  }
+
+  .hero2-content {
+    width: 100%;
+    margin: 0;
+  }
+
+  .hero2-content h1 {
+    font-size: 2rem;
+  }
+
+  .feature-header {
+    display: flex;
+    justify-content: flex-start; /* Align heading to the left */
+    align-items: center;
+    width: 100%;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+  }
+
+  .feature-header h3 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  .feature-header > button {
+    display: none; /* Hide toggle button on tablet */
+  }
+}
+
+/* Mobile devices (<=768px) */
+@media (max-width: 768px) {
+  .hero2 {
+    margin: 20px;
+    padding: 15px;
+    gap: 20px;
+  }
+
+  .hero2 img {
+    width: 100%;
+    max-width: 100%;
+    margin: 10px 0;
+  }
+
+  .hero2-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero2-content p {
+    font-size: 0.95rem;
+  }
+
+  .feature-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+  }
+
+  .feature-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .feature-header > button {
+    display: none; /* Hide toggle button on mobile */
+  }
+}
+
+/* Small phones (<=480px) */
+@media (max-width: 480px) {
+  .hero2 {
+    margin: 10px;
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .hero2-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero2-content p {
+    font-size: 0.9rem;
+  }
+
+  .hero2 img {
+    border-radius: 8px;
+  }
+
+  .feature-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 10px;
+  }
+
+  .feature-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .feature-header > button {
+    display: none; /* Hide toggle button on small phones */
+  }
+}
+
