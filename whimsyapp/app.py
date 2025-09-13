@@ -7,10 +7,11 @@ from sqlalchemy import func
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
+# 👇 Set static folder to 'static/static'
 app = Flask(
     __name__,
-    static_folder=os.path.join(BASE_DIR, 'static'),
-    static_url_path='/static'
+    static_folder=os.path.join(BASE_DIR, 'static', 'static'),  # important: nested static/static
+    static_url_path='/static'  # how React refers to /static/*
 )
 CORS(app)
 
@@ -28,14 +29,13 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # --- API Routes ---
-
 @app.route('/api/')
 def home_data():
     return jsonify({"message": "Welcome to the Home page!"})
 
 @app.route('/api/shop')
 def shop_data():
-    category_name = request.args.get('category')  # e.g. "Bracelet", "Ring", or None
+    category_name = request.args.get('category')
     query = Product.query
 
     if category_name and category_name.lower() != "all":
@@ -121,16 +121,18 @@ def debug_invalid_category():
     return jsonify([p.to_dict() for p in products])
 
 # --- React frontend serving ---
-
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_react_app(path):
-    # If the requested file exists in static folder, serve it directly
-    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
-        return send_from_directory(app.static_folder, path)
+    # Full path to build output: static/static/
+    build_dir = os.path.join(BASE_DIR, 'static', 'static')
+
+    file_path = os.path.join(build_dir, path)
+
+    if path != "" and os.path.exists(file_path):
+        return send_from_directory(build_dir, path)
     else:
-        # For all other routes, serve React's index.html (supports React Router)
-        return send_from_directory(app.static_folder, 'index.html')
+        return send_from_directory(build_dir, 'index.html')
 
 # --- Setup & Run ---
 if __name__ == '__main__':
