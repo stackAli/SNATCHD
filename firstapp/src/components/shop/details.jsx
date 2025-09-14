@@ -8,8 +8,11 @@ function Details() {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
 
+  // ✅ Use your live API instead of localhost
+  const API_BASE = "https://whimsyjewels.pythonanywhere.com";
+
   useEffect(() => {
-    fetch(`http://localhost:5000/api/product/${id}`)
+    fetch(`${API_BASE}/api/product/${id}`)
       .then(res => res.json())
       .then(data => setProduct(data))
       .catch(err => console.error('Error fetching product:', err));
@@ -21,21 +24,15 @@ function Details() {
       quantity: parseInt(quantity, 10)
     };
 
-    // Get current cart from localStorage or start empty
     const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Check if product already in cart
     const index = existingCart.findIndex(item => item.id === cartItem.id);
 
     if (index >= 0) {
-      // If exists, update quantity
       existingCart[index].quantity += cartItem.quantity;
     } else {
-      // Else add new product
       existingCart.push(cartItem);
     }
 
-    // Save updated cart back to localStorage
     localStorage.setItem('cart', JSON.stringify(existingCart));
 
     alert(`Added ${cartItem.quantity} ${product.name}(s) to cart`);
@@ -51,7 +48,8 @@ function Details() {
 
       <div className="details-card">
         <div className="image-side">
-          <img src={`http://localhost:5000${product.image}`} alt={product.name} />
+          {/* ✅ Load image from PythonAnywhere */}
+          <img src={`${API_BASE}${product.image}`} alt={product.name} />
         </div>
         <div className="info-side">
           <h1>{product.name}</h1>
