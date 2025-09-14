@@ -1,17 +1,18 @@
 import os
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, send_from_directory, render_template
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from models import db, Category, Product
 from sqlalchemy import func
 
+# --- Base Directory ---
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
-# 👇 Set static folder to 'static/static'
+# --- Flask App Setup ---
 app = Flask(
     __name__,
-    static_folder=os.path.join(BASE_DIR, 'static', 'static'),  # important: nested static/static
-    static_url_path='/static'  # how React refers to /static/*
+    static_folder=os.path.join(BASE_DIR, 'static'),  # ✅ React build static files
+    static_url_path='/static'
 )
 CORS(app)
 
@@ -21,7 +22,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = os.path.join(BASE_DIR, 'static', 'uploads')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
-# --- Init DB ---
+# --- Initialize DB ---
 db.init_app(app)
 
 # --- Helpers ---
@@ -120,30 +121,26 @@ def debug_invalid_category():
     products = Product.query.filter(~Product.category.has()).all()
     return jsonify([p.to_dict() for p in products])
 
-# --- React frontend serving ---
+# --- React frontend (static + index.html) ---
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_react_app(path):
-    # Full path to build output: static/static/
-    build_dir = os.path.join(BASE_DIR, 'static', 'static')
-
-    file_path = os.path.join(build_dir, path)
-
+    file_path = os.path.join(app.static_folder, path)
     if path != "" and os.path.exists(file_path):
-        return send_from_directory(build_dir, path)
-    else:
-        return send_from_directory(build_dir, 'index.html')
+        return send_from_directory(app.static_folder, path)
+    return render_template('index.html')  # ✅ load React entrypoint
 
-# --- Setup & Run ---
+# --- App Runner ---
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
 
+        # Ensure upload folder exists
         os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
+        # Seed categories if empty
         if not Category.query.first():
-            categories = ["Ring", "Earring", "Bracelet"]
-            for name in categories:
+            for name in ["Ring", "Earring", "Bracelet"]:
                 db.session.add(Category(name=name))
             db.session.commit()
 
