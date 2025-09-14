@@ -11,7 +11,8 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 # --- Flask App Setup ---
 app = Flask(
     __name__,
-    static_folder=os.path.join(BASE_DIR, 'static'),  # ✅ React build static files
+    static_folder=os.path.join(BASE_DIR, 'static'),        # ✅ React build static files
+    template_folder=os.path.join(BASE_DIR, 'templates'),   # ✅ React index.html
     static_url_path='/static'
 )
 CORS(app)
@@ -128,7 +129,7 @@ def serve_react_app(path):
     file_path = os.path.join(app.static_folder, path)
     if path != "" and os.path.exists(file_path):
         return send_from_directory(app.static_folder, path)
-    return render_template('index.html')  # ✅ load React entrypoint
+    return render_template('index.html')   # ✅ loads from templates/index.html
 
 # --- App Runner ---
 if __name__ == '__main__':
