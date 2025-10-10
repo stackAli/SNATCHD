@@ -21,7 +21,7 @@ function Hero() {
   }, []);
 
   return (
-    <div className="hero">
+    <div className="hero" >
       <div className="hero-header">
         <h1>Explore Everything</h1>
         <Link to="/shop">

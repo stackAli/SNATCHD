@@ -7,7 +7,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-column">
-        <h2>Whimsy Jewels</h2>
+        <h2>SNATCHD</h2>
         <a href="https://www.instagram.com/your_insta_id" target="_blank" rel="noopener noreferrer">
           <FaInstagram size={24} className="instagram-icon" />
         </a>

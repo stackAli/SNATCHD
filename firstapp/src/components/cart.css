@@ -1,14 +1,14 @@
 .cart-container {
   padding: 2rem;
 }.cart-container h2{
-    color: #b46c93;
+    color: #1c3c43;
     font-size: 2rem;
     margin-bottom: 20px;
     font-weight: 500;
 }
 
 .cart-container h3{
-    color: #b46c93;
+    color: #1c3c43;
     font-size: 1.1rem;
     margin-bottom: 10px;
     
@@ -41,7 +41,7 @@
 .remove-btn {
   margin-top: 0.5rem;
   padding: 10px 40px;
-  color: #b46c93;
+  color: #1c3c43;
   background: rgb(219, 215, 215);
   border: none;
   cursor: pointer;
@@ -49,7 +49,7 @@
 
 .remove-btn:hover {
   color: #f6ebf0;  
-  background-color: #b46c93;  
+  background-color: #1c3c43;  
   
   box-shadow: none;
   transform: none;
@@ -83,7 +83,7 @@
 .go-back-btn {
   padding: 8px 16px;
   cursor: pointer;
-  color: #b46c93;
+  color: #1c3c43;
   background: rgb(219, 215, 215);
   border: none;
   cursor: pointer;
@@ -92,7 +92,7 @@
 
 .go-back-btn:hover {
   color: #f6ebf0;  
-  background-color: #b46c93;  
+  background-color: #1c3c43;  
   
   box-shadow: none;
   transform: none;
@@ -107,7 +107,7 @@
   box-shadow: none;
   transition: none;
   outline: none;
-  background-color: #b46c93;
+  background-color: #1c3c43;
   font-weight: 400;
   color: #f6ebf0;
   font-size: 1rem;
@@ -117,7 +117,7 @@
 }
 
 .cart-actions button:hover {
-  color: #b46c93;  
+  color: #1c3c43;  
   background-color: #f6ebf0;  
   background: none;
   box-shadow: none;

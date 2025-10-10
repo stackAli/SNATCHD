@@ -5,8 +5,8 @@
   width: 100%;
   z-index: 1050;
   padding: 10px;
-  background-color: #f6ebf0;
-  box-shadow: 10px 10px 15px #b46c93;
+  background-color: #e0ecea;
+  box-shadow: 10px 10px 15px #1c3c43;
   overflow: visible; /* Allow dropdown to overflow */
   margin-bottom: -80px;
 }
@@ -18,14 +18,14 @@
 
 /* Nav links hover effect */
 .nav-link:hover {
-  color: #b46c93 !important;
+  color: #1c3c43 !important;
   text-decoration: underline;
   transition: color 0.3s ease;
 }
 
 /* Cart button hover */
 .btn-light:hover {
-  background-color: #b46c93;
+  background-color: #1c3c43;
   color: white;
   transition: background-color 0.3s ease;
 }
@@ -33,13 +33,13 @@
 /* Brand styles */
 .navbar-brand {
   font-family: 'Didot', serif;
-  color: #b46c93;
+  color: #1c3c43;
   margin-left: -200px;
 }
 
 /* Nav link styles */
 .nav-link {
-  color: #b46c93;
+  color: #1c3c43;
   font-weight: 200;
   letter-spacing: 5px;
   font-size: 1.2rem;
@@ -52,7 +52,7 @@
   right: 0;
   transform: translate(50%, -50%);
   background-color: black;
-  color: #8c3e6c;
+  color: #1c3c43;
   font-size: 0.75rem;
   font-weight: bold;
   padding: 3px 6px;
@@ -74,7 +74,7 @@
   position: absolute !important;
   top: 100% !important;
   left: 0 !important;
-  background-color: #b46c93  !important; /* Pink background */
+  background-color: #1c3c43  !important; /* Pink background */
   color: white !important;
   border: 1px solid #ddd !important;
   border-radius: 6px !important;
@@ -99,7 +99,7 @@
 
 .dropdown-item:hover {
   background-color: white !important;
-  color: #b46c93 !important;
+  color: #1c3c43 !important;
 }
 
 
@@ -123,7 +123,7 @@
   display: block;
   height: 3px;
   width: 100%;
-  background: #b46c93;
+  background: #1c3c43;
   border-radius: 2px;
   transition: all 0.3s ease;
 }

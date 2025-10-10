@@ -4,7 +4,7 @@
 }
 
 .start h1 {
-  color: #b46c93;
+  color: #1c3c43;
   font-weight: 600;
   font-family: serif;
   margin-bottom: 40px;
@@ -29,9 +29,9 @@ nav::-webkit-scrollbar {
 /* Default nav link */
 .nav-link2 {
   padding: 10px 25px;
-  border: 2px solid #b46c93;
+  border: 2px solid #1c3c43;
   border-radius: 5px;
-  color: #b46c93;
+  color: #1c3c43;
   background-color: transparent;
   text-decoration: none;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -42,14 +42,14 @@ nav::-webkit-scrollbar {
 
 /* Hover state */
 .nav-link2:hover {
-  background-color: #b46c93;
+  background-color: #1c3c43;
   color: white;
 }
 
 /* Active link */
 .nav-link2.active {
-  background-color: #b46c93;
-  border-color: #b46c93;
+  background-color: #1c3c43;
+  border-color: #1c3c43;
   font-weight: bold;
   color: white;
 }

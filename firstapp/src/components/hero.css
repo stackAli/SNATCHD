@@ -21,7 +21,7 @@
   font-size: 3rem;
   font-weight: 500;
   letter-spacing: 0.5px;
-  color: #b46c93;
+  color: #1c3c43;
   margin: 0;
 }
 
@@ -32,7 +32,7 @@
   transition: all 0.3s ease;
   transform: translateZ(10px);
   cursor: pointer;
-  color: #b46c93;
+  color: #1c3c43;
   font-family: serif;
   font-weight: bold;
   border: none;
@@ -41,7 +41,7 @@
 
 .main-button:hover {
   transform: translate(-10px, -10px) translateZ(0);
-  box-shadow: 10px 10px 15px #b46c93;
+  box-shadow: 10px 10px 15px #1c3c43;
 }
 .shop-button {
   transform: none;
@@ -49,15 +49,16 @@
   margin: 0;
   padding: 15px 50px;
   cursor: pointer;
-  color: #b46c93;
+  color: #1c3c43;
   font-family: serif;
   border: none;
   font-size: 1.2rem;
   border-radius: 5px;
+  background-color: #bed0c1;
 }
 .shop-button:hover {
   color: white;
-  background-color: #b46c93;
+  background-color: #1c3c43;
 }
 .hero-grid {
   display: grid;
@@ -97,7 +98,7 @@
 }
 
 .hero-grid-item p {
-  color: #b46c93;
+  color: #1c3c43;
   font-weight: 600;
 }
 

@@ -5,8 +5,9 @@ function Main() {
   return (
     <div className="grid-container">
       <div className="grid-column-1">
-        <h1>Modern Hand Crafted Jewelry</h1>
-        <p>Discover the elegance of handcrafted jewelry, where every piece tells a story.</p>
+       <h1>Revive Your Style with Thrift Finds</h1>
+        <p>Shop one-of-a-kind thrifted pieces that blend vintage charm with modern flair.</p>
+
         <Link to="/shop">
           <button className="main-button">Shop Our Products</button>
         </Link>

@@ -28,6 +28,7 @@
   font-size: 1.2rem; /* smaller than default h4 */
   margin: 5px 5px 0; /* optional spacing */
   font-weight: 600; /* you can adjust font weight */
+  color: #1c3c43;
 }
 
 .product-card p {
@@ -35,6 +36,7 @@
   margin: 0;
   font-weight: 500;
   margin-bottom: 20px;
+  color: #1c3c43;
 }
 
 .product-card img {
@@ -53,7 +55,7 @@
 }
 
 .pagination-buttons button {
-  background-color: #b46c93;
+  background-color: #1c3c43;
   color: white;
   padding: 10px 20px;
   margin: 0 10px;

@@ -19,11 +19,11 @@ function Header() {
 
   const brandStyle = {
     fontFamily: "'Didot', serif",
-    color: '#b46c93',
+    color: '#1c3c43',
   };
 
   const navLinkStyle = {
-    color: '#b46c93',
+    color: '#1c3c43',
     fontWeight: '300',
     letterSpacing: '1px',
     cursor: 'pointer',
@@ -39,7 +39,7 @@ function Header() {
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? (
-              <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#b46c93' }}>×</span>
+              <span style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#1c3c43' }}>×</span>
             ) : (
               <>
                 <span></span>
@@ -113,7 +113,7 @@ function Header() {
 
           {/* Center brand */}
           <Link to="/" className="navbar-brand fs-3 fw-bold" style={brandStyle}>
-            Whimsy Jewels
+            SNATCHD
           </Link>
 
           {/* Right side cart icon */}

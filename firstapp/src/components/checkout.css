@@ -4,13 +4,15 @@
   padding: 2rem;
   border: 1px solid #ddd;
   border-radius: 8px;
-  background: #f6ebf0;
+  background: #e0ecea;
+  color: #1c3c43;
 }
 
 .checkout-container h2,
 .checkout-container h3,
 .checkout-container h4 {
   margin-bottom: 1rem;
+  color: #1c3c43;
 }
 
 .checkout-form {
