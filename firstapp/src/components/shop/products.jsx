@@ -10,7 +10,7 @@ function ProductGrid() {
   const productsPerPage = 12;
 
   // Hardcoded backend URL:
-  const API_URL = 'https://whimsyjewels.pythonanywhere.com';
+  const API_URL = 'https://snatchd.pythonanywhere.com/api';
 
   useEffect(() => {
     setPage(1); // Reset to first page when category changes

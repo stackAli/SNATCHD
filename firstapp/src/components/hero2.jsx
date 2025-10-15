@@ -1,23 +1,26 @@
 // src/components/Hero2.jsx
 import React, { useState } from "react";
-import './hero2.css';
+import "./hero2.css";
 
 function Hero2() {
   const [visibleIndex, setVisibleIndex] = useState(null);
 
   const features = [
     {
-      title: "Unique Design",
-      description: "Each piece is thoughtfully crafted to stand out from the crowd. Each piece is thoughtfully crafted to stand out from the crowd."
+      title: "Sustainably Sourced",
+      description:
+        "Every item in our collection has been carefully handpicked to reduce waste and promote mindful fashion. We believe in giving beautiful clothes a second life.",
     },
     {
-      title: "Hand Made",
-      description: "Lovingly handmade by skilled artisans using premium materials. Each piece is thoughtfully crafted to stand out from the crowd."
+      title: "One-of-a-Kind Finds",
+      description:
+        "Each thrifted piece carries its own history and charm — no two items are ever the same. Discover something that truly speaks to your individual style.",
     },
     {
-      title: "Only For You",
-      description: "Tailored designs that resonate with your personal style. Each piece is thoughtfully crafted to stand out from the crowd."
-    }
+      title: "Consciously Curated",
+      description:
+        "From vintage gems to modern reworks, our pieces are chosen for their quality, story, and potential to inspire a more sustainable way of dressing.",
+    },
   ];
 
   const toggleDescription = (index) => {
@@ -26,17 +29,15 @@ function Hero2() {
 
   return (
     <div className="hero2">
-      <img src="/images/hero2.avif" alt="Tops Collection" />
-      
+      <img src="/images/hero2.jpg" alt="Thrifted Clothing Collection" />
+
       <div className="hero2-content">
-        <h4>Tops Collection</h4>
-        <h1>Browse our latest drop: unique pieces, truly stunning.</h1>
+        <h4>Thrifted Collection</h4>
+        <h1>Rewear. Reuse. Relove.</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet
-          accumsan elit. Vestibulum aliquet urna metus, tincidunt molestie eros
-          rutrum sit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet
-          accumsan elit. Vestibulum aliquet urna metus, tincidunt molestie eros
-          rutrum sit.
+          Discover pre-loved fashion that feels brand new — thoughtfully chosen and beautifully revived for the modern wardrobe. Each piece in our thrifted collection carries its own story, from timeless vintage staples to unique contemporary finds.
+
+          We handpick every item with care, focusing on quality, sustainability, and individuality — because great style doesn’t have to come at the cost of the planet. Whether you’re searching for a rare treasure or simply a new favorite, our curated collection invites you to shop consciously, dress boldly, and give clothing a second life filled with new memories.
         </p>
 
         <div className="hero2-features">
@@ -45,12 +46,11 @@ function Hero2() {
               <div className="feature-header">
                 <h3>{feature.title}</h3>
                 <button onClick={() => toggleDescription(index)}>
-                  {visibleIndex === index ? '▲' : '▼'}
+                  {visibleIndex === index ? "▲" : "▼"}
                 </button>
               </div>
               {visibleIndex === index && (
                 <p className="feature-description">{feature.description}</p>
-                
               )}
             </div>
           ))}

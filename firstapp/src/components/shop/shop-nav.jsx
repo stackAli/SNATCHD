@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './shop-nav.css';
 
 function CategoryNav() {
-  const categories = ['All', 'Bracelet', 'Ring', 'Earring'];
+  const categories = ['All', 'Tops', 'Bottom', 'Shoes'];
 
   return (
     <div className="start">

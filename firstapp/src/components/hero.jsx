@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import './hero.css';
 
-const API_URL = "https://whimsyjewels.pythonanywhere.com";
+const API_URL = 'https://snatchd.pythonanywhere.com/api';
 
 const categoryImages = {
-  Ring: "/images/rings.avif",
-  Earring: "/images/earrings.avif",  // fixed typo here
-  Bracelet: "/images/bracelet.avif",
+  Ring: `${API_URL}/images/hero31.jpg`,
+  Earring: `${API_URL}/images/hero32.jpg`,
+  Bracelet: `${API_URL}/images/hero33.jpg`,
 };
 
 function Hero() {

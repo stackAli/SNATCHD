@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './details.css';
+import Footer from './shop-footer';
 
 function Details() {
   const { id } = useParams();
@@ -9,7 +10,7 @@ function Details() {
   const [quantity, setQuantity] = useState(1);
 
   // ✅ Use your live API instead of localhost
-  const API_BASE = "https://whimsyjewels.pythonanywhere.com";
+  const API_BASE = 'https://snatchd.pythonanywhere.com/api';
 
   useEffect(() => {
     fetch(`${API_BASE}/api/product/${id}`)
@@ -40,40 +41,46 @@ function Details() {
 
   if (!product) return <p>Loading...</p>;
 
-  return (
-    <div className="details-container">
-      <button onClick={() => navigate(-1)} className="back-button">
-        ← Back
-      </button>
+ return (
+    <>
+      <div className="details-container">
+        <button onClick={() => navigate(-1)} className="back-button">
+          ← Back
+        </button>
 
-      <div className="details-card">
-        <div className="image-side">
-          {/* ✅ Load image from PythonAnywhere */}
-          <img src={`${API_BASE}${product.image}`} alt={product.name} />
-        </div>
-        <div className="info-side">
-          <h1>{product.name}</h1>
-          <p><strong>Price:</strong> Rs {product.price.toFixed(2)}</p>
-          <p><strong>Description:</strong> {product.description}</p>
+        <div className="details-card">
+          <div className="image-side">
+            {/* ✅ Load image from backend */}
+            <img src={`${API_BASE}${product.image}`} alt={product.name} />
+          </div>
 
-          <div
-            className="cart-count"
-            style={{ display: 'flex', gap: '40px', alignItems: 'center', marginTop: '20px' }}
-          >
-            <input
-              type="number"
-              min="1"
-              value={quantity}
-              onChange={e => setQuantity(e.target.value)}
-              style={{ width: '100px', padding: '15px 40px' }}
-            />
-            <button onClick={handleAddToCart} className="add-to-cart-btn">
-              Add to Cart
-            </button>
+          <div className="info-side">
+            <h1>{product.name}</h1>
+            <p><strong>Price:</strong> Rs {product.price.toFixed(2)}</p>
+            <p><strong>Description:</strong> {product.description}</p>
+
+            <div
+              className="cart-count"
+              style={{ display: 'flex', gap: '40px', alignItems: 'center', marginTop: '20px' }}
+            >
+              <input
+                type="number"
+                min="1"
+                value={quantity}
+                onChange={e => setQuantity(e.target.value)}
+                style={{ width: '100px', padding: '15px 40px' }}
+              />
+              <button onClick={handleAddToCart} className="add-to-cart-btn">
+                Add to Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* ✅ Footer added here */}
+      <Footer />
+    </>
   );
 }
 

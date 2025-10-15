@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './cart.css'; // ← Import CSS here
-
-const API_BASE = 'https://whimsyjewels.pythonanywhere.com';
+import Footer from './footer';
+const API_BASE = 'https://snatchd.pythonanywhere.com/api';;
 
 function Cart() {
   const navigate = useNavigate();
@@ -56,22 +56,31 @@ function Cart() {
     0
   );
 
-  return (
+ return (
+  <>
     <div className="cart-container">
       <h2>Your Cart</h2>
+
       {cartItems.map(item => (
         <div className="cart-item" key={item.id}>
           <img src={`${API_BASE}${item.image}`} alt={item.name} />
           <div>
             <h3>{item.name}</h3>
             <p>Price per item: Rs {item.price.toFixed(2)}</p>
+
             <div className="cart-actions">
               <button onClick={() => decreaseQuantity(item.id)}>-</button>
               <span>{item.quantity}</span>
               <button onClick={() => increaseQuantity(item.id)}>+</button>
             </div>
-            <p><strong>Total: Rs {(item.price * item.quantity).toFixed(2)}</strong></p>
-            <button className="remove-btn" onClick={() => removeItem(item.id)}>Remove</button>
+
+            <p>
+              <strong>Total: Rs {(item.price * item.quantity).toFixed(2)}</strong>
+            </p>
+
+            <button className="remove-btn" onClick={() => removeItem(item.id)}>
+              Remove
+            </button>
           </div>
         </div>
       ))}
@@ -79,11 +88,19 @@ function Cart() {
       <h3>Total Cart Price: Rs {totalPrice.toFixed(2)}</h3>
 
       <div className="cart-buttons">
-        <button className="go-back-btn" onClick={() => navigate('/shop')}>Continue Shopping</button>
-        <button className="checkout-btn" onClick={handleCheckout}>Checkout</button>
+        <button className="go-back-btn" onClick={() => navigate('/shop')}>
+          Continue Shopping
+        </button>
+        <button className="checkout-btn" onClick={handleCheckout}>
+          Checkout
+        </button>
       </div>
     </div>
-  );
+
+    <Footer />
+  </>
+);
+
 }
 
 export default Cart;
